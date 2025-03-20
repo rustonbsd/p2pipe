@@ -2354,6 +2354,7 @@ name = "p2pipe"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "bytes",
  "futures-lite 1.13.0",
  "iroh",
  "iroh-gossip",

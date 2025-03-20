@@ -1,5 +1,7 @@
+use std::io::Read;
+
 use anyhow::Result;
-use futures_lite::StreamExt;
+use futures_lite::{io::Bytes, StreamExt};
 use iroh::{Endpoint, SecretKey};
 use iroh_gossip::net::{Event, Gossip, GossipEvent};
 use iroh_topic_tracker::{integrations::iroh_gossip::{AutoDiscoveryBuilder, AutoDiscoveryGossip}, topic_tracker::Topic};
@@ -39,9 +41,9 @@ async fn main() -> Result<()> {
         while let Some(event) = stream.next().await {
             if let Ok(Event::Gossip(GossipEvent::Received(msg))) = event {
                 println!(
-                    "Message from {}: {}",
+                    "Message from {}: {} MB",
                     &msg.delivered_from.to_string()[0..8],
-                    String::from_utf8(msg.content.to_vec()).unwrap()
+                    msg.content.len() / 1024 / 1024
                 );
             } else if let Ok(Event::Gossip(GossipEvent::Joined(peers))) = event{
                 for peer in peers {
@@ -57,7 +59,7 @@ async fn main() -> Result<()> {
     loop {
         print!("> ");
         stdin.read_line(&mut buffer).unwrap();
-        sink.broadcast(buffer.clone().replace("\n","").into()).await.unwrap();
+        sink.broadcast([0u8; 1024*1024*100].to_vec().into()).await.unwrap();
         buffer.clear();
     }
 }
