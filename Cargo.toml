@@ -1,0 +1,13 @@
+[package]
+name = "p2pipe"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+iroh-topic-tracker = "0.1.11"
+iroh = "0.31"
+iroh-gossip = { version = "0.31.0" }
+tokio = { version = "1", features = ["full"]}
+anyhow = "1"
+rand = "0.8"
+futures-lite = "1"
