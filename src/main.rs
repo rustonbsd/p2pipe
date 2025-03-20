@@ -21,6 +21,7 @@ async fn main() -> Result<()> {
 
     // Initialize gossip with auto-discovery
     let gossip = Gossip::builder()
+        .max_message_size(1024*1024*100)
         .spawn_with_auto_discovery(endpoint.clone())
         .await?;
 
@@ -40,6 +41,7 @@ async fn main() -> Result<()> {
     tokio::spawn(async move {
         while let Some(event) = stream.next().await {
             if let Ok(Event::Gossip(GossipEvent::Received(msg))) = event {
+                println!("Event");
                 println!(
                     "Message from {}: {} MB",
                     &msg.delivered_from.to_string()[0..8],
@@ -59,7 +61,8 @@ async fn main() -> Result<()> {
     loop {
         print!("> ");
         stdin.read_line(&mut buffer).unwrap();
-        sink.broadcast([0u8; 1024*1024].to_vec().into()).await.unwrap();
+        sink.broadcast([128u8; 1024*1024].to_vec().into()).await.unwrap();
+        println!("send!");
         buffer.clear();
     }
 }
