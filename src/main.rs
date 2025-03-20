@@ -1,10 +1,11 @@
 use std::io::Read;
 
 use anyhow::Result;
-use futures_lite::{io::Bytes, StreamExt};
+use futures_lite::{StreamExt};
 use iroh::{Endpoint, SecretKey};
 use iroh_gossip::net::{Event, Gossip, GossipEvent};
 use iroh_topic_tracker::{integrations::iroh_gossip::{AutoDiscoveryBuilder, AutoDiscoveryGossip}, topic_tracker::Topic};
+use rand::{Rng, RngCore};
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -61,7 +62,10 @@ async fn main() -> Result<()> {
     loop {
         print!("> ");
         stdin.read_line(&mut buffer).unwrap();
-        sink.broadcast([128u8; 1024*1024].to_vec().into()).await.unwrap();
+        let mut buf = [0u8;1024*1024];
+        let mut e = rand::thread_rng();
+        e.fill_bytes(&mut buf);
+        sink.broadcast(buf.to_vec().into()).await.unwrap();
         println!("send!");
         buffer.clear();
     }
