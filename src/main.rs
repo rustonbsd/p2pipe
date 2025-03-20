@@ -59,7 +59,7 @@ async fn main() -> Result<()> {
     loop {
         print!("> ");
         stdin.read_line(&mut buffer).unwrap();
-        sink.broadcast([0u8; 1024*1024*100].to_vec().into()).await.unwrap();
+        sink.broadcast([0u8; 1024*1024].to_vec().into()).await.unwrap();
         buffer.clear();
     }
 }
