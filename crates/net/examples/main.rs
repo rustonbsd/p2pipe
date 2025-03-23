@@ -1,11 +1,9 @@
-use std::io::Read;
-
 use anyhow::Result;
-use futures_lite::{StreamExt};
+use futures_lite::StreamExt;
 use iroh::{Endpoint, SecretKey};
 use iroh_gossip::net::{Event, Gossip, GossipEvent};
 use iroh_topic_tracker::{integrations::iroh_gossip::{AutoDiscoveryBuilder, AutoDiscoveryGossip}, topic_tracker::Topic};
-use rand::{Rng, RngCore};
+use rand::RngCore;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -15,7 +13,6 @@ async fn main() -> Result<()> {
     let endpoint = Endpoint::builder()
         .secret_key(secret_key)
         .discovery_n0()
-        .discovery_dht()
         .bind()
         .await?;
 

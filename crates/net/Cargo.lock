@@ -269,9 +269,9 @@ dependencies = [
 
 [[package]]
 name = "cc"
-version = "1.2.17"
+version = "1.2.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1fcb57c740ae1daf453ae85f16e37396f672b039e00d9d866e07ddb24e328e3a"
+checksum = "be714c154be609ec7f5dad223a33bf1482fff90472de28f7362806e6d4832b8c"
 dependencies = [
  "shlex",
 ]
@@ -613,20 +613,6 @@ dependencies = [
  "block-buffer",
  "crypto-common",
  "subtle",
-]
-
-[[package]]
-name = "discovery"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "bytes",
- "ed25519-dalek",
- "futures-lite 1.13.0",
- "mainline 5.3.1",
- "once_cell",
- "rand 0.8.5",
- "tokio",
 ]
 
 [[package]]
@@ -1823,7 +1809,7 @@ dependencies = [
  "iroh-metrics",
  "iroh-quinn",
  "iroh-quinn-proto",
- "lru 0.12.5",
+ "lru",
  "num_enum",
  "pin-project",
  "postcard",
@@ -1978,12 +1964,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "lru"
-version = "0.13.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "227748d55f2f0ab4735d87fd623798cb6b664512fe979705f829c9f81c934465"
-
-[[package]]
 name = "mainline"
 version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1993,35 +1973,13 @@ dependencies = [
  "crc",
  "ed25519-dalek",
  "flume",
- "lru 0.12.5",
+ "lru",
  "rand 0.8.5",
  "serde",
  "serde_bencode",
  "serde_bytes",
  "sha1_smol",
  "thiserror 1.0.69",
- "tracing",
-]
-
-[[package]]
-name = "mainline"
-version = "5.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2fae24c3d129b92c8cfea92a9e2014052371a2835e4a6d66dfdb00238e389e56"
-dependencies = [
- "crc",
- "document-features",
- "dyn-clone",
- "ed25519-dalek",
- "flume",
- "futures-lite 2.6.0",
- "getrandom 0.2.15",
- "lru 0.13.0",
- "serde",
- "serde_bencode",
- "serde_bytes",
- "sha1_smol",
- "thiserror 2.0.12",
  "tracing",
 ]
 
@@ -2104,20 +2062,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6a51313c5820b0b02bd422f4b44776fbf47961755c74ce64afc73bfad10226c3"
 dependencies = [
  "getrandom 0.2.15",
-]
-
-[[package]]
-name = "net"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "bytes",
- "futures-lite 1.13.0",
- "iroh",
- "iroh-gossip",
- "iroh-topic-tracker",
- "rand 0.8.5",
- "tokio",
 ]
 
 [[package]]
@@ -2406,6 +2350,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b15813163c1d831bf4a13c3610c05c0d03b39feb07f7e09fa234dac9b15aaf39"
 
 [[package]]
+name = "p2pipe"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "bytes",
+ "futures-lite 1.13.0",
+ "iroh",
+ "iroh-gossip",
+ "iroh-topic-tracker",
+ "rand 0.8.5",
+ "tokio",
+]
+
+[[package]]
 name = "parking"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2546,8 +2504,8 @@ dependencies = [
  "flume",
  "futures",
  "js-sys",
- "lru 0.12.5",
- "mainline 2.0.1",
+ "lru",
+ "mainline",
  "self_cell",
  "simple-dns",
  "thiserror 2.0.12",
@@ -4842,18 +4800,18 @@ checksum = "2164e798d9e3d84ee2c91139ace54638059a3b23e361f5c11781c2c6459bde0f"
 
 [[package]]
 name = "zerocopy"
-version = "0.8.24"
+version = "0.8.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2586fea28e186957ef732a5f8b3be2da217d65c5969d4b1e17f973ebbe876879"
+checksum = "fd97444d05a4328b90e75e503a34bad781f14e28a823ad3557f0750df1ebcbc6"
 dependencies = [
  "zerocopy-derive",
 ]
 
 [[package]]
 name = "zerocopy-derive"
-version = "0.8.24"
+version = "0.8.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a996a8f63c5c4448cd959ac1bab0aaa3306ccfd060472f85943ee0750f0169be"
+checksum = "6352c01d0edd5db859a63e2605f4ea3183ddbd15e2c4a9e7d32184df75e4f154"
 dependencies = [
  "proc-macro2",
  "quote",
